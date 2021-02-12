@@ -28,12 +28,13 @@ public class ComptesServiceApplication {
     @Bean
     CommandLineRunner commandLineRunner(CompteRepository compteRepository, OperationRepository operationRepository) {
         return args -> {
-            Compte compte = compteRepository.save(new Compte(null, "2000", 12.00, new Date(), "COURANT", "ACTIVE", null, 1l,null));
+            Compte compte = compteRepository.save(new Compte(null, "cp-251263255", 19552, new Date(), "COURANT", "ACTIVE", null, 1l,null));
             List<Operation> operations = new ArrayList<>();
-            operations.add(operationRepository.save(new Operation(null, 20.00, "vers", compte)));
+            operations.add(operationRepository.save(new Operation(null, 4152.00, "versement", compte)));
+            operations.add(operationRepository.save(new Operation(null, 2500.00, "versement", compte)));
             compte.setOperations(operations);
-            operations.forEach(o -> {
-                operationRepository.save(o);
+            operations.forEach(op -> {
+                operationRepository.save(op);
             });
         };
     }
